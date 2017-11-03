@@ -13,7 +13,7 @@ In Eclipse you must first install some plugins.
 1. Create new project-> Spring Boot ->Spring Starter Project
 2. Name the project schms
 3. Name the package com.schms
-4. Next, choose Web package, MySQL Package
+4. Next, choose Web package, MySQL package
 5. Add those dependencies:
 	>	<dependency>
 	>		<groupId>org.springframework.boot</groupId>
