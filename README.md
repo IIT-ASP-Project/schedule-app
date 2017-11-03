@@ -14,7 +14,7 @@ In Eclipse you must first install some plugins.
 2. Name the project schms
 3. Name the package com.schms
 4. Next, choose Web package, MySQL Package
-5. Add those dependcies:
+5. Add those dependencies:
 	>	<dependency>
 	>		<groupId>org.springframework.boot</groupId>
 	>		<artifactId>spring-boot-starter-jdbc</artifactId>
