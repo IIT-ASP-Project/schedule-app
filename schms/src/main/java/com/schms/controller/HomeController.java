@@ -9,13 +9,8 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home(){
-		return "redirect:/index";	
+		return "redirect:/professor/list/";
 	}
-	
-	@RequestMapping("/index")
-	public String index(){
-		return "index";
-	}
-	
+		
 	
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="common/header :: common-header"/>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        
+        
+        <!-- Sidebar -->
+      	<div th:replace="common/header :: common-sidebar"/>
+
+        <!-- top navigation -->
+        <div th:replace="common/header :: common-navbar"/>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3 th:text="${action + ' Hall'}"></h3>
+			  </div>
+            </div>
+            <div class="clearfix"></div>
+            
+            <div class="alert alert-danger" th:if="${hallExists}">
+  				<strong>Careful!</strong> Hall already exists, use another.
+			</div>
+			 <div class="alert alert-danger" th:if="${numLimit}">
+  				<strong>Careful!</strong> Cannot add Hall. Location space exceeded.
+			</div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <form class="form-horizontal form-label-left" th:action="@{|/hall/${action}|}" method="POST">
+                     <input type="hidden" name="id" th:value="${hall.id}" />
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="name">Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12" th:value="${hall.name}"  name="name" placeholder="e.g 001" required="required" type="text"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Location<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control" name="location" >
+                           <option></option>
+                             <!--th:selected escaping null problem with subject.faculty.id when adding  -->
+                           <option th:each="location : ${locations}"  th:value="${location.id}" th:text="${location.name}" th:selected="${action == 'edit' ? (location.id == hall.location.id) : (1 == 0)}"></option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="floor">Floor <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="floor" name="floor" th:value="${hall.floor}" required="required" data-validate-minmax="1" class="form-control col-md-7 col-xs-12"/>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <a th:href="@{/hall/list}"  type="submit" class="btn btn-primary">Cancel</a>
+                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer th:replace="common/footer :: common-footer"/>
+        
+        <!-- bottom scripts -->
+        <div th:replace="common/footer :: common-bottom-scripts" />
+      </div>
+    </div>
+  </body>
+</html>

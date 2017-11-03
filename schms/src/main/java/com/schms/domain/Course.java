@@ -13,18 +13,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Course {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="course_id", nullable = false, updatable = false)
+	@Column(name="id", nullable = false, updatable = false)
 	private Long id;
 	
 	private String courseIdentity;
 	private String name;
 	private int term;
 	
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="professor_id")
 	private Professor professor;

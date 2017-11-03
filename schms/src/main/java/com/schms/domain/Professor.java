@@ -16,7 +16,7 @@ public class Professor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="professor_id", nullable = false, updatable = false)
+	@Column(name="id", nullable = false, updatable = false)
 	private Long id;
 	
 	private String name;

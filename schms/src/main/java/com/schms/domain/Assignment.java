@@ -18,7 +18,7 @@ public class Assignment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="assignment_id", nullable = false, updatable = false)
+	@Column(name="id", nullable = false, updatable = false)
 	private Long id;
 	
 	private String name;
