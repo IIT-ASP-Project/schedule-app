@@ -50,9 +50,12 @@ trying to run. It must show Tomcat started on port(s): 8080 (http)
 
 
 
+
+
+## STEP 3 Some documentation : [Spring Doc](https://github.com/spring-projects/spring-boot/blob/master/README.adoc) Modules
+
 Below a direct extract from [Spring Doc](https://github.com/spring-projects/spring-boot/blob/master/README.adoc)
 
-## Modules
 There are a number of modules in Spring Boot, here is a quick overview:
 
 
