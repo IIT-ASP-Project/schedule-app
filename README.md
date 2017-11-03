@@ -49,14 +49,15 @@ In Eclipse you must first install some plugins.
 trying to run. It must show Tomcat started on port(s): 8080 (http)
 
 
+
 Below a direct extract from [Spring Doc](https://github.com/spring-projects/spring-boot/blob/master/README.adoc)
 
-== Modules
+## Modules
 There are a number of modules in Spring Boot, here is a quick overview:
 
 
 
-=== spring-boot
+### spring-boot
 The main library providing features that support the other parts of Spring Boot,
 these include:
 
@@ -70,7 +71,7 @@ defaults
 
 
 
-=== spring-boot-autoconfigure
+### spring-boot-autoconfigure
 Spring Boot can configure large parts of common applications based on the content
 of their classpath. A single `@EnableAutoConfiguration` annotation triggers
 auto-configuration of the Spring context.
@@ -82,7 +83,7 @@ always back away as the user starts to define their own beans.
 
 
 
-=== spring-boot-starters
+### spring-boot-starters
 Starters are a set of convenient dependency descriptors that you can include in
 your application. You get a one-stop-shop for all the Spring and related technology
 that you need without having to hunt through sample code and copy paste loads of
@@ -92,14 +93,14 @@ project, and you are good to go.
 
 
 
-=== spring-boot-cli
+### spring-boot-cli
 The Spring command line application compiles and runs Groovy source, making it super
 easy to write the absolute minimum of code to get an application running. Spring CLI
 can also watch files, automatically recompiling and restarting when they change.
 
 
 
-=== spring-boot-actuator
+### spring-boot-actuator
 Spring Boot Actuator provides additional auto-configuration to decorate your application
 with features that make it instantly deployable and supportable in production.  For
 instance if you are writing a JSON web service then it will provide a server, security,
@@ -109,7 +110,7 @@ makes that really easy as well.
 
 
 
-=== spring-boot-loader
+### spring-boot-loader
 Spring Boot Loader provides the secret sauce that allows you to build a single jar file
 that can be launched using `java -jar`. Generally you will not need to use
 `spring-boot-loader` directly, but instead work with the
@@ -118,7 +119,7 @@ link:spring-boot-tools/spring-boot-maven-plugin[Maven] plugin.
 
 
 
-== Samples
+### Samples
 Groovy samples for use with the command line application are available in
 link:spring-boot-cli/samples[spring-boot-cli/samples]. To run the CLI samples type
 `spring run <sample>.groovy` from samples directory.
@@ -128,7 +129,7 @@ be built with maven and run by invoking `java -jar target/<sample>.jar`.
 
 
 
-== Guides
+## Guides
 The http://spring.io/[spring.io] site contains several guides that show how to use Spring
 Boot step-by-step:
 
