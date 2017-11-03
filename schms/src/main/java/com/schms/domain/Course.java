@@ -27,7 +27,7 @@ public class Course {
 	private String name;
 	private int term;
 	
-	
+	//Ill kill marat
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="professor_id")
