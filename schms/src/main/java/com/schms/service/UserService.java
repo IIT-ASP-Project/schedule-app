@@ -8,6 +8,6 @@ import com.schms.domain.security.UserRole;
 public interface UserService {
 	
 	User createUser(User user, Set<UserRole> userRoles) throws Exception;
-	User saveUser(User user);
+	User save(User user);
 
 }

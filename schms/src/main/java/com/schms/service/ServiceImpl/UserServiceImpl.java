@@ -16,7 +16,7 @@ import com.schms.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
@@ -24,25 +24,28 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private RoleDao roleDao;
-	
 
 	@Override
-	public User createUser(User user, Set<UserRole> userRoles) throws Exception {
+	public User createUser(User user, Set<UserRole> userRoles) {
 		User localUser = userDao.findByUsername(user.getUsername());
-		if(null != localUser){
-			LOG.info("user {} already exist. Nothing will be done.", user.getUsername());
-		}else{
-			for(UserRole ur : userRoles){
+
+		if (localUser != null) {
+			LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
+		} else {
+			for (UserRole ur : userRoles) {
 				roleDao.save(ur.getRole());
 			}
+
 			user.getUserRoles().addAll(userRoles);
+
 			localUser = userDao.save(user);
 		}
+
 		return localUser;
 	}
 
 	@Override
-	public User saveUser(User user) {
+	public User save(User user) {
 		return userDao.save(user);
 	}
 

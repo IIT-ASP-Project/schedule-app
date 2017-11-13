@@ -22,7 +22,6 @@ import com.schms.domain.security.UserRole;
 @Entity
 public class User implements UserDetails {
 	
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -30,6 +29,7 @@ public class User implements UserDetails {
 	private Long id;
 	private String username;
 	private String password;
+	private boolean enabled=true;
 	
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
@@ -53,6 +53,11 @@ public class User implements UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
@@ -64,9 +69,10 @@ public class User implements UserDetails {
 	//Add user authority names for a user
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<GrantedAuthority> authorities = new HashSet<>();
-		userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
-		return authorities;
+		Set<GrantedAuthority> authorites = new HashSet<>();
+		userRoles.forEach(ur -> authorites.add(new Authority(ur.getRole().getName())));
+		
+		return authorites;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
@@ -83,10 +89,10 @@ public class User implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		return enabled;
 	}
 	
 	

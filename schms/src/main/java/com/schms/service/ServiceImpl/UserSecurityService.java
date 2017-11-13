@@ -10,18 +10,16 @@ import com.schms.dao.UserDao;
 import com.schms.domain.User;
 
 @Service
-public class UserSecurityService implements UserDetailsService {
-	
+public class UserSecurityService implements UserDetailsService{
 	
 	@Autowired
 	private UserDao userDao;
 	
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDao.findByUsername(username);
 		
-		if(null == user){
+		if(null == user) {
 			throw new UsernameNotFoundException("Username not found");
 		}
 		
