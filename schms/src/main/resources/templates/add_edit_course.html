@@ -18,59 +18,58 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3 th:text="${action + ' Subject'}"></h3>
+                <h3 th:text="${action + ' Course'}"></h3>
 			  </div>
             </div>
             <div class="clearfix"></div>
             
-            <div class="alert alert-danger" th:if="${subjectExists}">
-  				<strong>Careful!</strong> Subject already exists, use another.
+            <div class="alert alert-danger" th:if="${courseExists}">
+  				<strong>Careful!</strong> Course already exists, use another.
 			</div>
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_content">
-                    <form class="form-horizontal form-label-left" th:action="@{|/subject/${action}|}" method="POST">
-                      <input type="hidden" name="id" th:value="${subject.id}" />
+                    <form class="form-horizontal form-label-left" th:action="@{|/course/${action}|}" method="POST">
+                      <input type="hidden" name="id" th:value="${course.id}" />
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" th:value="${subject.name}"  name="name" placeholder="both name(s) e.g Orik Hoxha" required="required" type="text"/>
+                          <input id="name" class="form-control col-md-7 col-xs-12" th:value="${course.name}"  name="name" placeholder="both name(s) e.g Orik Hoxha" required="required" type="text"/>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="courseIdentity">Course Identity<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="courseIdentity" class="form-control col-md-7 col-xs-12" th:value="${course.courseIdentity}"  name="courseIdentity" placeholder="both name(s) e.g Orik Hoxha" required="required" type="text"/>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Faculty<span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="term">Term <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" name="faculty" >
+                          <select class="form-control" id="term" name="term">
                            <option></option>
-                           <!--th:selected escaping null problem with subject.faculty.id when adding  -->
-                           <option th:each="faculty : ${faculties}"  th:value="${faculty.id}" th:text="${faculty.name}" th:selected="${action == 'edit' ? (faculty.id == subject.faculty.id) : (1 == 0)}"></option>
+                            <option value ="1" th:selected="${course.term == 1}">Fall</option>
+                            <option value = "2" th:selected="${course.term == 2}">Spring</option>
                           </select>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Faculty Year:</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Professor <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" name="facultyYear">
-                           <option th:each="i : ${#numbers.sequence( 1, 4)}" th:value="${i}" th:text="${i}"  th:selected="${i == subject.facultyYear}"></option>
-                          
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semester</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" name="semester">
-                           <option th:each="i : ${#numbers.sequence( 1, 6)}" th:value="${i}" th:text="${i}"  th:selected="${i == subject.semester}"></option>
+                          <select class="form-control" name="professor">
+                           <option></option>
+                            <option th:each="professor : ${professors}"  th:value="${professor.id}" th:text="${professor.name}" th:selected="${action == 'edit' ? (professor.id == course.professor.id) : (1 == 0)}"></option>
                           </select>
                         </div>
                       </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <a th:href="@{/subject/list}"  type="submit" class="btn btn-primary">Cancel</a>
+                          <a th:href="@{/course/list}"  type="submit" class="btn btn-primary">Cancel</a>
                           <button id="send" type="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>

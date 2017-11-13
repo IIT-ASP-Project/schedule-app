@@ -18,38 +18,59 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Course {
 	
+	
+	
+	//Not shown
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id", nullable = false, updatable = false)
 	private Long id;
 	
+	
+	//Shown
 	private String courseIdentity;
+	
+	//Shown
 	private String name;
+	
+	//Shown
 	private int term;
 	
-	//Ill kill marat
+	
+	
+	//If professor login add automatically to that professor
+	//If admin login choose professor
+	//Not shown
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="professor_id")
 	private Professor professor;
 	
-	
+	//Shown
 	//When delete a course, delete a teaching assistant related to that course
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="course", cascade=CascadeType.ALL)
 	private List<TeachingAssistant> teachingAssistants;
 	
+	
+	//Shown
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Material> materials;
 	
+	
+	//Not shown
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Schedule> schedules;
 	
+	
+	//Shown
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Assignment> assignments;
 	
+	
+	//Not shown
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Event> events;
@@ -127,8 +148,15 @@ public class Course {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-	
-	
-	
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	
 }

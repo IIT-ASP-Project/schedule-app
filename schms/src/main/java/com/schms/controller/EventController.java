@@ -10,58 +10,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.schms.domain.Professor;
-import com.schms.service.ProfessorService;
+import com.schms.domain.Event;
+import com.schms.service.CourseService;
+import com.schms.service.EventService;
 
 @Controller
-@RequestMapping("/professor")
-public class ProfessorController {
-	
+@RequestMapping("/event")
+public class EventController {
 	
 	@Autowired
-	private ProfessorService professorService;
+	private EventService eventService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	@RequestMapping(value="/list")
-	public String professors(Model model){
-		List<Professor> professors = professorService.getProfessors();
-		model.addAttribute("professors",professors);
-		return "professors";
+	public String events(Model model){
+		List<Event> events = eventService.getEvents();
+		model.addAttribute("events",events);
+		return "events";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model){
 		
-		Professor professor = new Professor();
-		model.addAttribute("professor", professor);
+		Event event = new Event();
+		model.addAttribute("event", event);
+		model.addAttribute("courses", courseService.getCourses());
 		model.addAttribute("action","register");
-		return "add_edit_professor";
+		return "add_edit_event";
 	}
 	
 	@RequestMapping(value ="/register", method = RequestMethod.POST)
-	public String register(@ModelAttribute("professor") Professor professor, Model model){
-			professorService.save(professor);
-			return "redirect:/professor/list";
+	public String register(@ModelAttribute("event") Event event, Model model){
+			eventService.save(event);
+			return "redirect:/event/list";
 	}
 	
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Model model, @RequestParam("id") Long id){
-		Professor professor = professorService.findById(id);
-		
-		model.addAttribute("professor",professor);
+		Event event = eventService.findById(id);
+		model.addAttribute("event",event);
+		model.addAttribute("courses", courseService.getCourses());
 		model.addAttribute("action","edit");
-		return "add_edit_professor";
+		return "add_edit_event";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String edit(@ModelAttribute("professor") Professor professor,Model model){
-		professorService.save(professor);
-		return "redirect:/professor/list";
+	public String edit(@ModelAttribute("event") Event event,Model model){
+		eventService.save(event);
+		return "redirect:/event/list";
 	}
 	
 	@RequestMapping(value="/remove")
 	public String remove(Long id){
-		professorService.delete(id);
-		return "redirect:/professor/list";
+		eventService.delete(id);
+		return "redirect:/event/list";
 	}
+
 }

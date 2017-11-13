@@ -6,7 +6,6 @@ import com.schms.domain.Professor;
 
 public interface ProfessorDao extends CrudRepository<Professor,Long> {
 	
-	
 	Professor findByName(String name);
 	Professor findByEmail(String email);
 

@@ -2,6 +2,7 @@ package com.schms.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,9 +26,17 @@ public class Professor {
 	private String username;
 	private String password;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="professor")
+	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="professor_id")
 	private List<Course> courses;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -64,9 +73,11 @@ public class Professor {
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Professor [id=" + id + ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber
+				+ ", username=" + username + ", password=" + password + ", courses=" + courses + "]";
+	}
 	
 	
 	

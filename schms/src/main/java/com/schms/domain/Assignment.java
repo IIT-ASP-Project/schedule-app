@@ -1,6 +1,5 @@
 package com.schms.domain;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -23,10 +26,24 @@ public class Assignment {
 	
 	private String name;
 	private String description;
-	private Date dueDate;
+	private String dueDate;
 	
 	@Transient
 	private List<MultipartFile> assignmentResources;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="course_id")
+	private Course course;
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -44,12 +61,12 @@ public class Assignment {
 		this.description = description;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+	public void setDueDate(String date) {
+		this.dueDate = date;
 	}
 
 	public List<MultipartFile> getAssignmentResources() {
@@ -59,6 +76,16 @@ public class Assignment {
 	public void setAssignmentResources(List<MultipartFile> assignmentResources) {
 		this.assignmentResources = assignmentResources;
 	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
+	
 	
 	
 

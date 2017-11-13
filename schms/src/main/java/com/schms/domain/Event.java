@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Event {
@@ -19,8 +23,14 @@ public class Event {
 	//type(lecture, lab)
 	private String name;
 	private String description;
-	private Date  eventDate;
-	private String time;
+	private String  eventDateTime;
+	
+	private String location;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="course_id")
+	private Course course;
 	
 	
 	public String getDescription() {
@@ -30,23 +40,40 @@ public class Event {
 		this.description = description;
 	}
 	
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
-	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getEventDate() {
-		return eventDate;
+	public String getEventDateTime() {
+		return eventDateTime;
 	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
+	public void setEventDateTime(String eventDateTime) {
+		this.eventDateTime = eventDateTime;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	
+	
+	
 
 }

@@ -18,32 +18,38 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Groups</h3>
+                <h3>Assignments</h3>
 			  </div>
             </div>
+
             <div class="clearfix"></div>
+
             <div class="row">
+              
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                  <a th:href="@{/group/register}" class="btn btn-link">Add a group</a>
+                 <!-- Add assignment  -->
+                  <a th:href="@{/assignment/register}" class="btn btn-link">Add an Assignment</a>
                   <div class="x_content">
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Faculty</th>
-                          <th>Faculty Year</th>
+                          <th>Description</th>
+                          <th>Course</th>
+                          <th>Due Date</th>
                           <th>Edit</th>
                           <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr data-th-each="group : ${groups}">
-                          <td data-th-text="${group.name}"></td>
-                          <td data-th-text="${group.faculty.name}"></td>
-                          <td data-th-text="${group.facultyYear}"></td>
-                          <td><a th:href="@{/group/edit?id=}+${group.id}">Edit</a></td>
-                          <td><a th:href="@{/group/remove?id=}+${group.id}" onclick="return confirm(' you want to delete?');">Delete</a></td>
+                        <tr data-th-each="assignment : ${assignments}">
+                          <td data-th-text="${assignment.name}"></td>
+                          <td data-th-text="${assignment.description}"></td>
+                          <td data-th-text="${assignment.course.name}"></td>
+                          <td data-th-text="${assignment.dueDate}"></td>
+                          <td><a th:href="@{/assignment/edit?id=}+${assignment.id}">Edit</a></td>
+                          <td><a th:href="@{/assignment/remove?id=}+${assignment.id}" onclick="return confirm(' you want to delete?');">Delete</a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -60,6 +66,7 @@
         
         <!-- bottom scripts -->
         <div th:replace="common/footer :: common-bottom-scripts" />
+        
       </div>
     </div>
   </body>
