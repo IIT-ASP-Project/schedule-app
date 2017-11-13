@@ -13,7 +13,7 @@ public class TeachingAssistant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ta_id", nullable = false, updatable = false)
+	@Column(name="id", nullable = false, updatable = false)
 	private Long id;
 	private String name;
 	
@@ -23,11 +23,8 @@ public class TeachingAssistant {
 	
 	private String phoneNumber;
 	private String email;
-	private int day;
-	private String hours;
 	
 
-	
 	public String getName() {
 		return name;
 	}
@@ -52,18 +49,15 @@ public class TeachingAssistant {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getDay() {
-		return day;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setDay(int day) {
-		this.day = day;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getHours() {
-		return hours;
-	}
-	public void setHours(String hours) {
-		this.hours = hours;
-	}
+	
+	
 	
 	
 	
