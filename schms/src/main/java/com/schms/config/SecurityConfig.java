@@ -40,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests().
-		/*	antMatchers("/**").*/
-			antMatchers(PUBLIC_MATCHERS).
+		/*	antMatchers("/**").    Uncomment this line to work without login*/
+			antMatchers(PUBLIC_MATCHERS). /*Comment this line to work with login(Doesn't work for now)*/
 			permitAll().anyRequest().authenticated();
 
 		http
