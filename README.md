@@ -6,7 +6,7 @@
 
 ## Steps to create project from scratch
 
-In Eclipse you must first install some plugins.
+In Eclipse you must first install some plugins..
 
 1. Go to Help->Eclipse Marketplace->(search for the Spring and it will find all Spring plugins)
     -> Install(Spring Tool Suite, Spring Source Tool Suite).
