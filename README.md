@@ -1,5 +1,21 @@
 # Schedule Management System
 
+## STEP 0 : Quick review of usual git commands
+
+**git clone** _[repo]_ = download locally the repo
+**git fetch** = update your local repo
+**git branch -a** _[branch name]_ = list all branches (in red are the remote branches)
+**git checkout** _[branch name]_ = changing branch
+
+(1) **git status** = give the status of change/unchanged file in the local repo, for the branch you are 
+(2) **git add** _[file name]_ = select one file to commit 
+(3) **git add** . = select all the file to commit 
+(4) **git commit -m** _[commentary]_ = commit with a comment
+(5) **git push** = publish the commit to the the remote branches you are working on
+
+**1->2->3->4->5** = General processus to publish a commit
+
+
 ## STEP 1 : Environment set up
 
 ### To start from this repo
