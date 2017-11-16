@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.schms.domain.security.Role;
 
 public interface RoleDao extends CrudRepository<Role,Long> {
-	Role findByname(String name);
+	Role findByName(String name);
 }

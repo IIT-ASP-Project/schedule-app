@@ -26,6 +26,7 @@
     <link href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
     <link href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <link href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+    <link href="/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
 
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet" />
@@ -46,7 +47,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Orik Hoxha</h2>
+                <h2 th:text="${#authentication.name}"></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -57,7 +58,7 @@
               <div class="menu_section">
                 <ul class="nav side-menu">
                   <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                  <li><a th:href="@{/professor/list}"><i class="fa fa-table"></i> Professors</a></li>
+                  <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a th:href="@{/professor/list}"><i class="fa fa-table"></i> Professors</a></li>
                   <li><a th:href="@{/assignment/list}"><i class="fa fa-table"></i> Assignments</a></li>
                   <li><a th:href="@{/course/list}"><i class="fa fa-bar-chart-o"></i> Courses</a></li>
                   <li><a th:href="@{/event/list}"><i class="fa fa-bar-chart-o"></i> Events</a></li>
