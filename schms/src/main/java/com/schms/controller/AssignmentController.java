@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.schms.domain.Assignment;
 import com.schms.service.AssignmentService;
@@ -44,7 +45,7 @@ public class AssignmentController {
 	}
 
 	@RequestMapping(value ="/register", method = RequestMethod.POST)
-	public String register(@ModelAttribute("Assignment") Assignment assignment, Model model){
+	public String register( @ModelAttribute("Assignment") Assignment assignment, Model model){
 		assignmentService.save(assignment);
 		return "redirect:/assignment/list";
 	}

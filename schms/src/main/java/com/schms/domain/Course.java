@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Course {
 	
 	
-	
 	//Not shown
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
