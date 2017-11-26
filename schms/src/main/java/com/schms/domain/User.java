@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +22,7 @@ import com.schms.domain.security.Authority;
 import com.schms.domain.security.UserRole;
 
 @Entity
+@Inheritance(strategy= InheritanceType.JOINED)
 public class User implements UserDetails {
 	
 	
@@ -27,8 +30,13 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", nullable = false, updatable=false)
 	private Long id;
+	
+	private String name;
+	private String email;
+	private String phoneNumber;
 	private String username;
 	private String password;
+	
 	private boolean enabled=true;
 	
 	
@@ -41,6 +49,28 @@ public class User implements UserDetails {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	
 	public String getUsername() {
 		return username;
 	}

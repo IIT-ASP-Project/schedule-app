@@ -45,6 +45,9 @@ public class Course {
 	@JoinColumn(name="professor_id")
 	private Professor professor;
 	
+	
+	
+	
 	//Shown
 	//When delete a course, delete a teaching assistant related to that course
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="course", cascade=CascadeType.ALL)
@@ -107,6 +110,8 @@ public class Course {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	
+	
 
 	public List<TeachingAssistant> getTeachingAssistants() {
 		return teachingAssistants;

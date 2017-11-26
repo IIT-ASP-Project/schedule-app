@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.schms.dao.ProfessorDao;
+import com.schms.dao.UserDao;
 import com.schms.domain.Professor;
+import com.schms.domain.User;
+import com.schms.domain.security.Role;
+import com.schms.domain.security.UserRole;
 import com.schms.service.ProfessorService;
+import com.schms.utility.SecurityUtility;
 
 
 @Service
@@ -16,6 +21,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 	
 	@Autowired
 	private ProfessorDao professorDao;
+	
 
 	@Override
 	public Professor findById(Long id) {
@@ -34,6 +40,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 
 	@Override
 	public void save(Professor professor) {
+		professor.setPassword(SecurityUtility.passwordEncoder().encode(professor.getPassword()));
 		professorDao.save(professor);
 	}
 

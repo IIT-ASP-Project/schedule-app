@@ -31,7 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String[] PUBLIC_MATCHERS = {
 			"/build/**",
 			"/vendors/**",
-			"/login"
+			"/login",
+			"/register"
+			
 	};
 
 	@Override

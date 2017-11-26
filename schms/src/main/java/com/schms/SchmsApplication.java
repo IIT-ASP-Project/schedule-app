@@ -31,21 +31,26 @@ public class SchmsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		User user1 = new User();
+		user1.setEnabled(true);
 		user1.setUsername("orik");
-		user1.setPassword(SecurityUtility.passwordEncoder().encode("orik"));
 		
+		user1.setPassword(SecurityUtility.passwordEncoder().encode("orik"));
 		
 		Role role1= new Role();
 		role1.setRoleId(0);
 		role1.setName("ROLE_ADMIN");
-		roleDao.save(role1);
 		
 		Set<UserRole> userRoles = new HashSet<>();
+		
+		userRoles.add(new UserRole(user1, role1));
+		userService.createUser(user1, userRoles);
+		
 		Role role2 = new Role();
 		role2.setRoleId(1);
 		role2.setName("ROLE_USER");
-		userRoles.add(new UserRole(user1, role2));
-		userService.createUser(user1, userRoles);
+		roleDao.save(role2);
 	}
+	
+	
 }
 	
