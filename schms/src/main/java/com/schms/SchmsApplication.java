@@ -30,11 +30,11 @@ public class SchmsApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		/*User user1 = new User();
+		User user1 = new User();
 		user1.setEnabled(true);
-		user1.setUsername("orik");
+		user1.setUsername("omar");
 		
-		user1.setPassword(SecurityUtility.passwordEncoder().encode("orik"));
+		user1.setPassword(SecurityUtility.passwordEncoder().encode("omar"));
 		
 		Role role1= new Role();
 		role1.setRoleId(0);
@@ -48,7 +48,7 @@ public class SchmsApplication implements CommandLineRunner {
 		Role role2 = new Role();
 		role2.setRoleId(1);
 		role2.setName("ROLE_USER");
-		roleDao.save(role2);*/
+		roleDao.save(role2);
 	}
 	
 	
