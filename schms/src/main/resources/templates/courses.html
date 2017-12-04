@@ -35,7 +35,7 @@
                           <th>Name</th>
                           <th>Course Identity</th>
                           <th>Term</th>
-                          <th>Professor</th>
+                          <th th:if="${enableProfessorName}">Professor</th>
                           <th>Edit</th>
                           <th>Delete</th>
                         </tr>
@@ -45,7 +45,7 @@
                           <td data-th-text="${course.name}"></td>
                           <td data-th-text="${course.courseIdentity}"></td>
                           <td data-th-text="${course.term == 1 ? 'Fall' : 'Spring'}"></td>
-                          <td data-th-text="${course.professor.name}"></td>
+                          <td th:if="${enableProfessorName}" data-th-text="${course.professor.name}"></td>
                           <td><a th:href="@{/course/edit?id=}+${course.id}">Edit</a></td>
                           <td><a th:href="@{/course/remove?id=}+${course.id}" onclick="return confirm(' you want to delete?');">Delete</a></td>
                         </tr>

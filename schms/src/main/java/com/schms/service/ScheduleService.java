@@ -17,5 +17,7 @@ public interface ScheduleService {
 	void delete(Long id);
 
 	List<Schedule> getSchedules();
+	
+	List<Schedule> getSchedulesProfessor(Long professorId);
 
 }

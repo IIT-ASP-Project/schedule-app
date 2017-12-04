@@ -13,9 +13,13 @@ public interface ProfessorService {
 	
 	Professor findByEmail(String email);
 	
+	Professor findByUsername(String username);
+	
+	
 	void save(Professor professor);
 	
 	void delete(Long id);
+	
 
 	List<Professor> getProfessors();
 	

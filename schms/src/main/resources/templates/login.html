@@ -47,6 +47,11 @@
 			  <div th:if="${success}" class="alert alert-success">
   				<strong>Success!</strong> You can now login!.
 			  </div>
+			  
+			  <div th:if="${exists}" class="alert alert-danger">
+  				<strong>Careful!</strong> Choose another username!.
+			  </div>
+			  
 
               <div class="separator">
                 <p class="change_link">New to site?
@@ -84,6 +89,8 @@
               </div>
 
               <div class="clearfix"></div>
+              
+              
 
               <div class="separator">
                 <p class="change_link">Already a member ?

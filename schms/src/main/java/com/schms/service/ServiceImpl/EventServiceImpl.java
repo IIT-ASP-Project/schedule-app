@@ -49,6 +49,11 @@ public class EventServiceImpl implements EventService{
 	public List<Event> getEvents() {
 		return (List<Event>)eventDao.findAll();
 	}
+
+	@Override
+	public List<Event> getEventsProfessor(Long professorId) {
+		return (List<Event>)eventDao.findByProfessorId(professorId);
+	}
 	
 	
 

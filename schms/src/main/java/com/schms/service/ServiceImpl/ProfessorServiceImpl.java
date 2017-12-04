@@ -54,4 +54,10 @@ public class ProfessorServiceImpl implements ProfessorService {
 		return (List<Professor>)professorDao.findAll();
 	}
 
+	@Override
+	public Professor findByUsername(String username) {
+		Professor professor = professorDao.findByUsername(username);
+		return professor != null ? professor : null;
+	}
+
 }

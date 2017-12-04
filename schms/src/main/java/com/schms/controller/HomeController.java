@@ -20,6 +20,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String index(){
 		return "redirect:/course/list";
+//		return "home";
 	}
 	
 	
@@ -33,10 +34,15 @@ public class HomeController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("professor") Professor professor, Model model){
-		System.out.println(professor.getEmail());
-		System.out.println("getting in here");
-		professorService.save(professor);
-		model.addAttribute("success", true);
+		if(professorService.findByUsername(professor.getUsername()) == null){
+			professorService.save(professor);
+			model.addAttribute("success", true);
+		}else{
+			model.addAttribute("exists", true);
+		}
+		
 		return "login";
+		
+		
 	}
 }

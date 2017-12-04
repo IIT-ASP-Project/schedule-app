@@ -1,5 +1,7 @@
 package com.schms.service.ServiceImpl;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(User user) {
 		return userDao.save(user);
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		return userDao.findByUsername(username);
 	}
 
 }

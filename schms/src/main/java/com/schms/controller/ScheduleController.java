@@ -2,7 +2,11 @@ package com.schms.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.schms.domain.Course;
 import com.schms.domain.Schedule;
+import com.schms.domain.User;
 import com.schms.service.CourseService;
 import com.schms.service.ScheduleService;
+import com.schms.service.UserService;
 
 @Controller
 @RequestMapping("/schedule")
@@ -24,19 +31,41 @@ public class ScheduleController {
 	@Autowired
 	private CourseService courseService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value="/list")
-	public String Schedules(Model model){
-		List<Schedule> schedules = scheduleService.getSchedules();
-		model.addAttribute("schedules",schedules);
+	public String Schedules(Model model, HttpServletRequest request){
+		
+		
+		if(request.isUserInRole("ROLE_ADMIN")){
+			List<Schedule> schedules = scheduleService.getSchedules();
+			model.addAttribute("schedules",schedules);
+		}else{
+			User u = getAuthenticatedUser();
+			List<Schedule> schedulesProfessor = scheduleService.getSchedulesProfessor(u.getId());
+			model.addAttribute("schedules",schedulesProfessor);
+		}
+	
 		return "schedules";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(Model model){
+	public String register(Model model, HttpServletRequest request){
 		
 		Schedule schedule = new Schedule();
+		
+		
+		
+		if(request.isUserInRole("ROLE_ADMIN")){
+			model.addAttribute("courses", courseService.getCourses());
+		}else{
+			User u = getAuthenticatedUser();
+			List<Course> courseProfessorList = courseService.getProfessorCourses(u.getId());
+			model.addAttribute("courses", courseProfessorList);
+		}
+		
 		model.addAttribute("schedule", schedule);
-		model.addAttribute("courses", courseService.getCourses());
 		model.addAttribute("action","register");
 		return "add_edit_schedule";
 	}
@@ -49,10 +78,19 @@ public class ScheduleController {
 	
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String edit(Model model, @RequestParam("id") Long id){
+	public String edit(Model model, @RequestParam("id") Long id, HttpServletRequest request){
+		
 		Schedule schedule = scheduleService.findById(id);
+		
+		if(request.isUserInRole("ROLE_ADMIN")){
+			model.addAttribute("courses", courseService.getCourses());
+		}else{
+			User u = getAuthenticatedUser();
+			List<Course> courseProfessorList = courseService.getProfessorCourses(u.getId());
+			model.addAttribute("courses", courseProfessorList);
+		}
+		
 		model.addAttribute("schedule",schedule);
-		model.addAttribute("courses", courseService.getCourses());
 		model.addAttribute("action","edit");
 		return "add_edit_schedule";
 	}
@@ -67,6 +105,12 @@ public class ScheduleController {
 	public String remove(Long id){
 		scheduleService.delete(id);
 		return "redirect:/schedule/list";
+	}
+	
+	public User getAuthenticatedUser(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User u = userService.findByUsername(authentication.getName());
+		return u;
 	}
 
 }

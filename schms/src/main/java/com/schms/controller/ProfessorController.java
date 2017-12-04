@@ -39,7 +39,12 @@ public class ProfessorController {
 	
 	@RequestMapping(value ="/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("professor") Professor professor, Model model){
-			professorService.save(professor);
+			if(professorService.findByUsername(professor.getUsername()) != null){
+				model.addAttribute("exists",true);
+			}else{
+				professorService.save(professor);
+			}
+			
 			return "redirect:/professor/list";
 	}
 	

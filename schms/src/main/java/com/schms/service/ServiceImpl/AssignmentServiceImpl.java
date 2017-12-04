@@ -35,6 +35,11 @@ public class AssignmentServiceImpl implements AssignmentService {
 	public List<Assignment> getAssignments() {
 		return (List<Assignment>)assignmentDao.findAll();
 	}
+
+	@Override
+	public List<Assignment> getAssignmentsProfessor(Long professorId) {
+		return (List<Assignment>)assignmentDao.findByProfessorId(professorId);
+	}
 	
 	
 	

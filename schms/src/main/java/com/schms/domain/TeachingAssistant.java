@@ -21,6 +21,7 @@ public class TeachingAssistant {
 	@JoinColumn(name="course_id")
 	private Course course;
 	
+	
 	private String phoneNumber;
 	private String email;
 	

@@ -50,4 +50,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return (List<Schedule>)scheduleDao.findAll();
 	}
 
+	@Override
+	public List<Schedule> getSchedulesProfessor(Long professorId) {
+		return (List<Schedule>)scheduleDao.findByProfessorId(professorId);
+	}
+
 }

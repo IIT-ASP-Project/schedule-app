@@ -17,5 +17,7 @@ public interface CourseService {
 	void delete(Long id);
 
 	List<Course> getCourses();
+	
+	List<Course> getProfessorCourses(Long userId);
 
 }

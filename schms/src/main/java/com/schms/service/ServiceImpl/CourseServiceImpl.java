@@ -28,9 +28,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public void save(Course course) {
+	public void save(Course course) {	
 		courseDao.save(course);
-		
 	}
 
 	@Override
@@ -42,6 +41,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> getCourses() {
 		return (List<Course>)courseDao.findAll();
+	}
+
+	@Override
+	public List<Course> getProfessorCourses(Long userId) {
+		return (List<Course>)courseDao.findByProfessorId(userId);
 	}
 
 }

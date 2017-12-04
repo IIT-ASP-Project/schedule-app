@@ -17,5 +17,7 @@ public interface TeachingAssistantService {
 	void delete(Long id);
 
 	List<TeachingAssistant> getTeachingAssistants();
+	
+	List<TeachingAssistant> getTeachingAssistantProfessor(Long id);
 
 }

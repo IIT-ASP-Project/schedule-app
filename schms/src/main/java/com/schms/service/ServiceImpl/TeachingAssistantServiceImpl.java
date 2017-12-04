@@ -47,6 +47,11 @@ public class TeachingAssistantServiceImpl implements TeachingAssistantService {
 	public List<TeachingAssistant> getTeachingAssistants() {
 		return (List<TeachingAssistant>)teachingAssistantDao.findAll();
 	}
+
+	@Override
+	public List<TeachingAssistant> getTeachingAssistantProfessor(Long id) {
+		return (List<TeachingAssistant>)teachingAssistantDao.findByProfessorId(id);
+	}
 	
 
 }

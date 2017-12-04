@@ -18,5 +18,7 @@ public interface EventService {
 	void delete(Long id);
 
 	List<Event> getEvents();
+	
+	List<Event> getEventsProfessor(Long professorId);
 
 }
